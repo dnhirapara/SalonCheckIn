@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>Salon Check In - {{ title }}</title>
+    {% else %}
+    <title>Salon Check In</title>
+    {% endif %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/main.css' %}">
+
+</head>
+
+<body>
+    <!-- #FIXME: Write CSS in main.css file -->
+    <center>
+        <h1 style="color: red">Salon CheckIn</h1>
+    </center>
+    <div class="container sticky-top">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse_Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapse_Navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Shops</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">About Us</a>
+                    </li>
+                    <!-- FIXME: Take it right side of navbar -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">register</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="shop_register.html">register shop</a>
+                            <a class="dropdown-item" href="customer_register.html">register customer</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">login</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="shop_login.html">shop login</a>
+                            <a class="dropdown-item" href="customer_login.html">customer login</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div><br><br>
+    {% block content %}{% endblock %}
+</body>
+
+</html>

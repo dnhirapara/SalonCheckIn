@@ -4,5 +4,13 @@ from django.http import HttpResponse
 # Create your views here.
 
 
-def index(request):
-    return HttpResponse("Test View")
+def register(request):
+    context = {}
+    context['title'] = 'Register'
+    return render(request, 'accounts/shop_register.html', context)
+
+
+def login(request):
+    context = {}
+    context['title'] = 'Login'
+    return render(request, 'accounts/shop_login.html', context)
