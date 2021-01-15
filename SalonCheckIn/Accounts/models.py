@@ -73,7 +73,8 @@ class Customer(models.Model):
 
 
 class Salon(models.Model):
-    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        Account, on_delete=models.CASCADE, default=Account.objects.first())
     display_name = models.CharField(max_length=64)
     description = models.CharField(max_length=1024)
     address = models.CharField(max_length=512)
