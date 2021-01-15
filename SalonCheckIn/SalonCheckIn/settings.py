@@ -39,6 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+
+    # third pary apps
+    'crispy_forms',
+
+    # My Apps
+
+    # 'Accounts',
+    # ISSUE: https://stackoverflow.com/questions/59435187/django-signals-not-working-when-placed-outside-models-py ( signals.py not working so i put below line insted of above line )
+    'Accounts.apps.AccountsConfig'
 ]
 
 REST_FRAMEWORK = {
@@ -130,3 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Poject Settings
+AUTH_USER_MODEL = 'Accounts.Account'
