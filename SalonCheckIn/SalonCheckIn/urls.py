@@ -21,6 +21,6 @@ from personal.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('accounts/', include('Accounts.urls'))
-    path('',home_screen_view),
+    # REF: https://youtu.be/ABuljoh0cig?list=PLLz6Bi1mIXhEXEnfAgUJXB0vLjHkyee6q&t=654 ( namespace )
+    path('accounts/', include('Accounts.urls', namespace='accounts'))
 ]
