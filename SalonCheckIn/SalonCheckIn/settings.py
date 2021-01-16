@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
 
     # third pary apps
+
     'crispy_forms',
+    'rest_framework',
+    'rest_framework.authtoken',
 
     # My Apps
 
