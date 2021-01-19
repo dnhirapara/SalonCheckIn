@@ -13,16 +13,16 @@ def registration_view(request):
 
     if request.method == 'POST':
         serializer = RegistrationSerializer(data=request.data)
-    data = {}
-    if serializer.is_valid():
-        account = serializer.save()
-        print(account)
-        data['response'] = "Successful"
-        data['email'] = account.email
-        data['username'] = account.username
-    else:
-        data = serializer.errors
-    return Response(data)
+        data = {}
+        if serializer.is_valid():
+            account = serializer.save()
+            print(account)
+            data['response'] = "Successful"
+            data['email'] = account.email
+            data['username'] = account.username
+        else:
+            data = serializer.errors
+        return Response(data)
 
 
 class getSalonView(generics.ListAPIView):

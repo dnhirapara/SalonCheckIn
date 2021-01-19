@@ -24,13 +24,13 @@ def save_customer(sender, instance, **kwargs):
 def create_related_model_objects(sender, instance=None, created=False, **kwargs):
     if created:
         token = Token.objects.create(user=instance)
-        print(token)
+        # print(token)
         if instance.is_customer:
             customer = Customer.objects.create(user=instance)
-            print(customer)
+            # print(customer)
         elif instance.is_salon:
             salon = Salon.objects.create(user=instance)
-            print(salon)
+            # print(salon)
 
 
 # @receiver(pre_delete, sender=settings.AUTH_USER_MODEL)
