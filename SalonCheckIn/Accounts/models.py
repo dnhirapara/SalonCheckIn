@@ -74,10 +74,15 @@ class Customer(models.Model):
 
 class Salon(models.Model):
     user = models.OneToOneField(
-        Account, on_delete=models.CASCADE, default=Account.objects.first())
-    display_name = models.CharField(max_length=64)
-    description = models.CharField(max_length=1024)
-    address = models.CharField(max_length=512)
+        Account, on_delete=models.CASCADE)
+    display_name = models.CharField(
+        max_length=64, null=False, default="Salon Name")
+    display_image = models.ImageField(
+        default='default.jpg', upload_to='salon_display_pics')
+    description = models.CharField(max_length=1024, default="Descriptin")
+    address = models.CharField(max_length=512, null=False, default="Address")
+    slug = models.SlugField(default='', editable=False,
+                            max_length=200, null=False)
 
     def __str__(self):
         return self.user.username
