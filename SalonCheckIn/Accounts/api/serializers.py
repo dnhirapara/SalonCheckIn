@@ -13,35 +13,50 @@ USER_ROLES_CHOICE = (
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    password2 = serializers.CharField(
-        style={'input_type': 'password'}, write_only=True)
     role = serializers.ChoiceField(
         choices=USER_ROLES_CHOICE)
 
     class Meta:
         model = Account
-        fields = ['email', 'username', 'role', 'password', 'password2']
+        fields = ['email', 'username', 'role', 'password', 'is_salon']
         extra_kwargs = {
             'password': {'write_only': True}
         }
 
+    def validate(self, data):
+        try:
+            validators.validate_password(
+                data['password'],
+                Account(
+                    email=data['email'],
+                    username=data['username']
+                )
+            )
+        except ValidationError as error:
+            errors = []
+            print(type(error))
+            print(type(errors))
+            for i in error:
+                errors.append(i)
+            raise serializers.ValidationError(
+                {"password": errors}, code='invalid')
+        return data
+
     def save(self):
+        print(self.validated_data['is_salon'])
         account = Account(
             email=self.validated_data['email'],
-            username=self.validated_data['username']
+            username=self.validated_data['username'],
+            is_salon=self.validated_data['is_salon']
         )
         password = self.validated_data['password']
-        password2 = self.validated_data['password2']
-        if password != password2:
-            raise serializers.ValidationError(
-                {'password': ['Passwords must match.']})
-        try:
-            validators.validate_password(password, account)
-        except ValidationError as error:
-            error_msg = []
-            for i in error:
-                error_msg.append(i)
-            raise serializers.ValidationError({'password': error_msg})
+        # try:
+        #     validators.validate_password(password, account)
+        # except ValidationError as error:
+        #     error_msg = []
+        #     for i in error:
+        #         error_msg.append(i)
+        #     raise serializers.ValidationError({'password': error_msg})
         # print(account)
         account.set_password(password)
         # print(self.validated_data['role'])
