@@ -1,8 +1,9 @@
 from .models import Salon, Account, Customer
 from django.dispatch import receiver
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save, pre_save, pre_delete
 from django.conf import settings
 from rest_framework.authtoken.models import Token
+from django.core.exceptions import ValidationError
 
 
 @receiver(post_save, sender=Salon)
@@ -20,6 +21,21 @@ def save_customer(sender, instance, **kwargs):
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
+def create_related_model_objects(sender, instance=None, created=False, **kwargs):
     if created:
-        Token.objects.create(user=instance)
+        token = Token.objects.create(user=instance)
+        print(token)
+        if instance.is_customer:
+            customer = Customer.objects.create(user=instance)
+            print(customer)
+        elif instance.is_salon:
+            salon = Salon.objects.create(user=instance)
+            print(salon)
+
+
+# @receiver(pre_delete, sender=settings.AUTH_USER_MODEL)
+# def delete_releted_model_objects(sender, instance, **kwargs):
+#     if instance.is_customer:
+#         Customer.objects.filter(user=instance).delete()
+#     elif instance.is_salon:
+#         Salon.objects.filter(user=instance).delete()
