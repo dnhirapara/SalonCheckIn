@@ -1,6 +1,9 @@
 from .models import Salon, Account, Customer
 from django.dispatch import receiver
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save, pre_save, pre_delete
+from django.conf import settings
+from rest_framework.authtoken.models import Token
+from django.core.exceptions import ValidationError
 
 
 @receiver(post_save, sender=Salon)

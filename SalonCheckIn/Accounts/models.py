@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-
+from datetime import date
+from django.urls import reverse
+from django.core.exceptions import ValidationError
+from django.utils.text import slugify
+from django.utils import timezone
 # Create your models here.
 
 
@@ -46,6 +50,7 @@ class Account(AbstractBaseUser):
 
     is_customer = models.BooleanField(default=False)
     is_salon = models.BooleanField(default=False)
+    # phone_number = models.CharField(max_lengeth=10, unique=True, null=False, blank=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
@@ -64,9 +69,19 @@ class Account(AbstractBaseUser):
         return True
 
 
+def no_future_date(date_value):
+    """
+    checks whether date is less than currunt date. If date greater than currnt date then it will raise validation error.
+    """
+    if date_value > date.today():
+        raise ValidationError("Future date not allowed!!")
+
+
 class Customer(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
-    address = models.CharField(max_length=512)
+    birth_date = models.DateField(
+        verbose_name="Birth Date", validators=[no_future_date], default=timezone.now())
+    address = models.CharField(max_length=512, default="Address")
 
     def __str__(self):
         return self.user.username
@@ -86,3 +101,11 @@ class Salon(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def save(self, *args, **kwargs):
+        value = self.user.username + " "+self.display_name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+    # def get_absolute_url(self, *args, **kwargs):
+    #     return reverse('getsalon', kwargs={'slug': self.slug})

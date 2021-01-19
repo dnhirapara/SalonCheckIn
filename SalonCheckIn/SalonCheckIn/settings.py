@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third pary apps
+
     'crispy_forms',
+    'rest_framework',
+    'rest_framework.authtoken',
 
     # My Apps
 
@@ -48,6 +51,17 @@ INSTALLED_APPS = [
     # ISSUE: https://stackoverflow.com/questions/59435187/django-signals-not-working-when-placed-outside-models-py ( signals.py not working so i put below line insted of above line )
     'Accounts.apps.AccountsConfig'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+    ),
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
