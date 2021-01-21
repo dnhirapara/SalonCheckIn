@@ -39,6 +39,3 @@ def create_related_model_objects(sender, instance=None, created=False, **kwargs)
 #         Customer.objects.filter(user=instance).delete()
 #     elif instance.is_salon:
 #         Salon.objects.filter(user=instance).delete()
-
-
-# TODO: Need to implement post delete signals for Salon and Customer model so that whenever model deleted boolenfield in Account model updated.
