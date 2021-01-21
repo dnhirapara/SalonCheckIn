@@ -29,11 +29,7 @@ def registration_view(request):
 class getSalonView(viewsets.ModelViewSet):
     queryset = Salon.objects.all()
     serializer_class = SalonSerializer
-    # lookup_field = 'slug'
-
-    # def get_queryset(self):
-    #     queryset = Salon.objects.all()
-    #     return queryset
+    lookup_field = 'slug'
 
 
 class getSalonDetailView(generics.RetrieveAPIView):

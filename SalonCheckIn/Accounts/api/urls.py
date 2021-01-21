@@ -12,16 +12,12 @@ from rest_framework.reverse import reverse
 app_name = 'api'
 
 router = routers.SimpleRouter()
-router.register(r'getsalons', getSalonView)
-# router.register(r'accounts', AccountViewSet)
+router.register('getsalons', getSalonView)
 
 urlpatterns = format_suffix_patterns([
     path('register', registration_view, name="register"),
     path('login', obtain_auth_token, name="login"),
-    # path('getsalons', getSalonView.as_view(), name="getsalons"),
-    # path('getsalon/<slug>', getSalonDetailView.as_view(), name="getsalondetail"),
 ])
 
 print(repr(router.urls))
 urlpatterns += router.urls
-# print(reverse('api:salon-detail'))
