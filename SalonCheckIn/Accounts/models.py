@@ -95,7 +95,7 @@ class Salon(models.Model):
     description = models.CharField(max_length=1024, default="Descriptin")
     address = models.CharField(max_length=512, null=False, default="Address")
     slug = models.SlugField(default='', editable=False,
-                            max_length=200, null=False)
+                            max_length=200, null=False, unique=True)
 
     def __str__(self):
         return self.user.username
@@ -105,5 +105,7 @@ class Salon(models.Model):
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
+    # def get_absolute_url(self):
+    #     return reverse('getsalons', args=[str(self.slug)])
     # def get_absolute_url(self, *args, **kwargs):
     #     return reverse('getsalon', kwargs={'slug': self.slug})

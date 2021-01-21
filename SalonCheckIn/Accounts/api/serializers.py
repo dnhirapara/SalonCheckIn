@@ -74,18 +74,22 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['email', 'username']
 
 
-class SalonSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+class SalonSerializer(serializers.HyperlinkedModelSerializer):
+    # user = UserSerializer()
     # url = serializers.HyperlinkedIdentityField(
-    #     view_name="api:getsalon-detail")
+    #     view_name="api:accounts:salon-detail")
     # url = serializers.SerializerMethodField('get_salon_url')
 
     class Meta:
         model = Salon
-        fields = '__all__'
-        # fields = ['id', 'user', 'display_name', 'address', 'slug']
-        lookup_field = 'slug'
-
+        fields = ['url', 'display_name']
+        # fields = '__all__'
+        # exclude = ['user']
+        # fields = ['url', 'display_name', 'address', 'slug']
+        # lookup_field = 'slug'
+        # extra_kwargs = {
+        #     'url': {'lookup_field': 'slug'}
+        # }
     # def get_salon_url(self, instance):
     #     return self.instance.slug
 

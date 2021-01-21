@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import generics
+from rest_framework import viewsets
 from .serializers import RegistrationSerializer, SalonSerializer, SalonDetailSerializer
 from Accounts.models import Salon, Account
 from django.shortcuts import get_object_or_404
@@ -25,9 +26,14 @@ def registration_view(request):
         return Response(data)
 
 
-class getSalonView(generics.ListAPIView):
+class getSalonView(viewsets.ModelViewSet):
     queryset = Salon.objects.all()
     serializer_class = SalonSerializer
+    # lookup_field = 'slug'
+
+    # def get_queryset(self):
+    #     queryset = Salon.objects.all()
+    #     return queryset
 
 
 class getSalonDetailView(generics.RetrieveAPIView):
