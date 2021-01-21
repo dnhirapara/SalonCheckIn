@@ -18,7 +18,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ['email', 'username', 'role', 'password', 'is_salon']
+        fields = ['email', 'username', 'role', 'password']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -43,23 +43,12 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return data
 
     def save(self):
-        print(self.validated_data['is_salon'])
         account = Account(
             email=self.validated_data['email'],
-            username=self.validated_data['username'],
-            is_salon=self.validated_data['is_salon']
+            username=self.validated_data['username']
         )
         password = self.validated_data['password']
-        # try:
-        #     validators.validate_password(password, account)
-        # except ValidationError as error:
-        #     error_msg = []
-        #     for i in error:
-        #         error_msg.append(i)
-        #     raise serializers.ValidationError({'password': error_msg})
-        # print(account)
         account.set_password(password)
-        # print(self.validated_data['role'])
         if USER_ROLES_CHOICE[0][0] == str(self.validated_data['role']):
             account.is_customer = True
         elif USER_ROLES_CHOICE[1][0] == str(self.validated_data['role']):

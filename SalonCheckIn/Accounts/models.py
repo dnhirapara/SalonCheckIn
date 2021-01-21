@@ -92,6 +92,8 @@ class Salon(models.Model):
         Account, on_delete=models.CASCADE)
     display_name = models.CharField(
         max_length=64, null=False, default="Salon Name")
+    display_image = models.ImageField(
+        default='default.jpg', upload_to='salon_display_pics')
     description = models.CharField(max_length=1024, default="Descriptin")
     address = models.CharField(max_length=512, null=False, default="Address")
     slug = models.SlugField(default='', editable=False,
