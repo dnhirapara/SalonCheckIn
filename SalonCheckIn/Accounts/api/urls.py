@@ -1,8 +1,8 @@
 from django.urls import path
 from .views import (
     registration_view,
-    getSalonView,
-    getSalonDetailView
+    GetSalonView,
+    UpdateSalonView,
 )
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework.authtoken.views import obtain_auth_token
@@ -12,7 +12,8 @@ from rest_framework.reverse import reverse
 app_name = 'api'
 
 router = routers.SimpleRouter()
-router.register('getsalons', getSalonView)
+router.register('getsalons', GetSalonView)
+router.register('update-salon', UpdateSalonView)
 
 urlpatterns = format_suffix_patterns([
     path('register', registration_view, name="register"),
