@@ -1,12 +1,15 @@
-from rest_framework import status
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from rest_framework import generics
-from rest_framework import viewsets
-from .serializers import RegistrationSerializer, SalonSerializer, SalonDetailSerializer
-from Accounts.models import Salon, Account
+from Accounts.models import Account, Salon
 from django.shortcuts import get_object_or_404
+from rest_framework import generics, permissions, status, viewsets
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import mixins
+from rest_framework import permissions
+
+from .serializers import (RegistrationSerializer, SalonDetailSerializer,
+                          SalonSerializer, SalonUpdateSerializer)
+from .permissions import SalonUserPermission
 
 
 @api_view(['POST', ])
@@ -26,12 +29,19 @@ def registration_view(request):
         return Response(data)
 
 
-class getSalonView(viewsets.ModelViewSet):
+class GetSalonView(viewsets.ReadOnlyModelViewSet):
     queryset = Salon.objects.all()
-    serializer_class = SalonSerializer
     lookup_field = 'slug'
+    permission_classes = []
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return SalonDetailSerializer
+        return SalonSerializer
 
 
-class getSalonDetailView(generics.RetrieveAPIView):
-    serializer_class = SalonDetailSerializer
+class UpdateSalonView(viewsets.GenericViewSet, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
+    queryset = Salon.objects.all()
+    serializer_class = SalonUpdateSerializer
     lookup_field = 'slug'
+    permission_classes = [permissions.IsAuthenticated, SalonUserPermission]
