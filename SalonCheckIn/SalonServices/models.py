@@ -17,7 +17,7 @@ class Service(models.Model):
     name = models.CharField(max_length=64, null=True)
     price = models.IntegerField()
     tags = models.ManyToManyField(Tag, null=True)
-    durations = models.DurationField()
+    duration = models.DurationField()
 
     def __str__(self):
         return self.salon.display_name+" "+self.name
