@@ -13,6 +13,7 @@ import Footer from './Footer';
 import RegisterCustomer from './RegisterCustomer';
 import RegisterSalon from './RegisterSalon';
 import ShopList from './ShopList';
+import CustomerSalon from './CustomerSalon';
 
 
 
@@ -30,6 +31,7 @@ const App = () =>{
             <Route exact path="home#about" component={Home}/>
             <Route exact path="/shopprofile" component={ShopProfile}/>
             <Route exact path="/customerprofile" component={CustomerProfile}/>
+            <Route exact path="/salon" component={CustomerSalon}/>
             <Redirect to="/"/>
         </Switch>
         <Footer/>

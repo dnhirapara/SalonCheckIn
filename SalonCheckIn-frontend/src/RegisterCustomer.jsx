@@ -5,8 +5,6 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 
 import Alert from './Alert';
 
-
-
 const RegisterCustomer = () =>{
 
     const showAlert = (al)=>
