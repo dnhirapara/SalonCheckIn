@@ -65,7 +65,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class SalonSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(
-        view_name='api:salon-detail', lookup_field='slug')
+        view_name='accounts-api:salon-detail', lookup_field='slug')
 
     class Meta:
         model = Salon
