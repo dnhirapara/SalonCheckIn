@@ -56,7 +56,7 @@ const RegisterSalonCustomer = (props) => {
             else
             {
                 console.log("hello");
-                <Redirect to="/"/>
+                window.location = "http://localhost:3000/login";
             }
         }).catch(e=>{
             console.log("error");
@@ -105,6 +105,6 @@ const RegisterSalonCustomer = (props) => {
 
         </>
     )
-}
+    }
 
 export default RegisterSalonCustomer;

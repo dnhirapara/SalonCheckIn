@@ -12,6 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 345
@@ -27,7 +28,6 @@ function Shop(props) {
 	const classes = useStyles();
 	return (
 		<>
-			
 		<div className="col-md-4 col-10 mx-auto my-2">
 			{/* <div className="card">
 				<img src='images/barbershop.jpg' className="card-img-top" alt="..."/>

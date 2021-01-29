@@ -1,6 +1,7 @@
 import React from 'react';
 import ShopListData from './ShopListData';
 import Shop from './Shop';
+import Navbar from './Navbar';
 
 function nshop(val,ind)
 {
@@ -13,6 +14,7 @@ function nshop(val,ind)
 const ShopList = ()=>{
     return (
         <>
+        <Navbar/>	
         <div className="my-5">
 			<h3 className="text-center">Shops</h3>
             <hr className="w-25 mx-auto pt-2"/>

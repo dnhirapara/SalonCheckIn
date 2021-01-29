@@ -8,7 +8,6 @@ import Registration from './Registration';
 import Login from './Login';
 import ShopProfile from './ShopProfile';
 import CustomerProfile from './CustomerProfile';
-import Navbar from './Navbar';
 import Footer from './Footer';
 import RegisterCustomer from './RegisterCustomer';
 import RegisterSalon from './RegisterSalon';
@@ -20,7 +19,6 @@ import CustomerSalon from './CustomerSalon';
 const App = () =>{
     return (
         <>
-        <Navbar/>
         <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/register" component={Registration}/>
@@ -28,7 +26,7 @@ const App = () =>{
             <Route exact path="/register/customer" component={RegisterCustomer}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/shoplist" component={ShopList}/>
-            <Route exact path="home#about" component={Home}/>
+            <Route exact path="/home#about" component={Home}/>
             <Route exact path="/shopprofile" component={ShopProfile}/>
             <Route exact path="/customerprofile" component={CustomerProfile}/>
             <Route exact path="/salon" component={CustomerSalon}/>

@@ -1,6 +1,9 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 import Alert from './Alert';
+import { Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import Navbar from './Navbar';
+
 
 
 const Login = () =>{
@@ -31,6 +34,8 @@ const Login = () =>{
             let result = res.data;
             console.log(result['token']);
             localStorage.setItem('token',result['token']);
+            window.location = "http://localhost:3000/shoplist";
+
         }).catch(e=>{
             console.log(e.response.data.non_field_errors);
             alert(e.response.data.non_field_errors)
@@ -39,6 +44,7 @@ const Login = () =>{
     }
     return (
         <>
+            <Navbar/>
             <div className="my-5">
                 <h2 className="text-center">Login</h2>
                 <hr className="w-25 mx-auto pt-2"/>
