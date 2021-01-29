@@ -37,6 +37,7 @@ const RegisterSalonCustomer = (props) => {
         bodyFormData.append('password2', data.cpass);
         bodyFormData.append('username', data.Name);
         bodyFormData.append('role', data.type);
+        console.log( bodyFormData);
        
         axios.post('http://127.0.0.1:8000/api/accounts/register',bodyFormData).then(res=>{
             let result = res.data;

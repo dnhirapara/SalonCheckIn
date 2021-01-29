@@ -34,7 +34,7 @@ const Login = () =>{
             let result = res.data;
             console.log(result['token']);
             localStorage.setItem('token',result['token']);
-            window.location = "http://localhost:3000/shoplist";
+            window.location = "http://localhost:3000/shopprofile";
 
         }).catch(e=>{
             console.log(e.response.data.non_field_errors);
