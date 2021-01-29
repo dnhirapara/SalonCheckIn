@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import Navbar from './Navbar';
 
 const img1={
     'width':'1000px',
@@ -16,6 +17,7 @@ const img2={
 const Registration = () =>{
     return (
         <>
+        <Navbar/>
         <div className="container-fluid about">
             <h1 className="text-center text-capitalize">Register</h1>
             <hr className="w-50 mx-auto pt-4"/>
