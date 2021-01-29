@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # third pary apps
 
     'crispy_forms',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -67,6 +68,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Third Party
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -148,4 +150,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media_cdn/'
 
 # Poject Settings
+
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:3000"
+]
+
 AUTH_USER_MODEL = 'Accounts.Account'

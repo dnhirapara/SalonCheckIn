@@ -1,15 +1,13 @@
 from Accounts.models import Account, Salon
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, permissions, status, viewsets
+from rest_framework import generics, mixins, permissions, status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import mixins
-from rest_framework import permissions
 
+from . import permissions as custom_permissions
 from .serializers import (RegistrationSerializer, SalonDetailSerializer,
                           SalonSerializer, SalonUpdateSerializer)
-from . import permissions as custom_permissions
 
 
 @api_view(['POST', ])

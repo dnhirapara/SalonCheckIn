@@ -5,6 +5,13 @@ from django.core.exceptions import (
 from SalonServices.models import Service, Tag
 
 
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ('name')
+
+
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('name', 'price', 'tags', 'duration')
+        model = Service
+        fields = ('id', 'name', 'price', 'tags', 'duration')
