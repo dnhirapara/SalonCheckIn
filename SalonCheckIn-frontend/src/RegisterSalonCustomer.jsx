@@ -105,6 +105,6 @@ const RegisterSalonCustomer = (props) => {
 
         </>
     )
-}
+    }
 
 export default RegisterSalonCustomer;
