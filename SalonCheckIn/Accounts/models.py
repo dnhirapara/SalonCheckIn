@@ -80,7 +80,7 @@ def no_future_date(date_value):
 class Customer(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     birth_date = models.DateField(
-        verbose_name="Birth Date", validators=[no_future_date], default=timezone.now())
+        verbose_name="Birth Date", validators=[no_future_date])
     address = models.CharField(max_length=512, default="Address")
 
     def __str__(self):
@@ -93,11 +93,11 @@ class Salon(models.Model):
     display_name = models.CharField(
         max_length=64, null=False, default="Salon Name")
     display_image = models.ImageField(
-        default='default.jpg', upload_to='salon_display_pics')
+        default='salon_display_pics/default.jpg', upload_to='salon_display_pics')
     description = models.CharField(max_length=1024, default="Descriptin")
     address = models.CharField(max_length=512, null=False, default="Address")
     slug = models.SlugField(default='', editable=False,
-                            max_length=200, null=False)
+                            max_length=200, null=False, unique=True)
 
     def __str__(self):
         return self.user.username
@@ -107,5 +107,7 @@ class Salon(models.Model):
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
+    # def get_absolute_url(self):
+    #     return reverse('getsalons', args=[str(self.slug)])
     # def get_absolute_url(self, *args, **kwargs):
     #     return reverse('getsalon', kwargs={'slug': self.slug})
