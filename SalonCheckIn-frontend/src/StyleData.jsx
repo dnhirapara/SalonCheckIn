@@ -8,37 +8,49 @@ var config = {
 		Authorization: 'Token ' + localStorage.getItem('token')
 	}
 };
-var Sdata;
+let Sdata = [];
 // Sdata = [
 // 	{
 // 		name: 'sherlock cut',
 // 		price: '6',
+// 		tags: [ 'hair cut', 'spa' ],
 // 		duration: '5'
 // 	},
 // 	{
 // 		name: 'watson cut',
 // 		price: '7',
+// 		tags: [ 'hair cut', 'spa' ],
 // 		duration: '4'
 // 	},
 // 	{
 // 		name: 'jon snow cut',
 // 		price: '7',
+// 		tags: [ 'hair cut', 'spa' ],
 // 		duration: '4'
 // 	}
 // ];
+
 console.log(Sdata);
+
+console.log(typeof Sdata);
 
 axios(config)
 	.then(function(response) {
+		console.log(typeof response);
 		console.log(JSON.stringify(response.data));
-		Sdata = JSON.stringify(response.data);
+		response.data.forEach((element) => {
+			Sdata.push(element);
+		});
+		// Sdata.push(response.data);
 		console.log('inside response');
-		console.log(Sdata);
+		// if (Math.random() % 2 == 0) console.log(Sdata);
 	})
 	.catch(function(error) {
 		console.log(error);
 	});
-export default Sdata;
+
 console.log('find');
 
 console.log(Sdata);
+
+export default Sdata;
