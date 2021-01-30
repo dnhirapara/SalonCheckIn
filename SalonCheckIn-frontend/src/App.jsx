@@ -14,7 +14,7 @@ import RegisterSalon from './RegisterSalon';
 import ShopList from './ShopList';
 import CustomerSalon from './CustomerSalon';
 import AddStyle from './AddStyle';
-
+import LogOut from './LogOut';
 
 
 const App = () =>{
@@ -29,6 +29,7 @@ const App = () =>{
             <Route exact path="/shoplist" component={ShopList}/>
             <Route exact path="/#about" component={Home}/>
             <Route exact path="/addstyle" component={AddStyle}/>
+            <Route exact path="/logout" component={LogOut}/>
             <Route exact path="/shopprofile" component={ShopProfile}/>
             <Route exact path="/customerprofile" component={CustomerProfile}/>
             <Route exact path="/salon" component={CustomerSalon}/>
