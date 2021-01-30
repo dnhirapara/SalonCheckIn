@@ -34,6 +34,13 @@ console.log(Sdata);
 
 console.log(typeof Sdata);
 
+export const getStyles = ()=>{
+	return axios(config)
+	.catch(function(error) {
+		console.log(error);
+	});
+}
+
 axios(config)
 	.then(function(response) {
 		console.log(typeof response);
@@ -42,7 +49,7 @@ axios(config)
 			Sdata.push(element);
 		});
 		// Sdata.push(response.data);
-		console.log('inside response');
+		// console.log('inside response');
 		// if (Math.random() % 2 == 0) console.log(Sdata);
 	})
 	.catch(function(error) {
@@ -53,4 +60,4 @@ console.log('find');
 
 console.log(Sdata);
 
-export default Sdata;
+// export default Sdata;

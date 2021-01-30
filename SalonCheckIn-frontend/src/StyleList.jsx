@@ -1,7 +1,8 @@
-import React from 'react';
-import StyleData from './StyleData';
+import React,{useState} from 'react';
+import {getStyles} from './StyleData';
 import Style from './Style';
 import Navbar2 from './Navbar2';
+import Sdata from './ShopListData';
 
 function nstyle(val,ind)
 {
@@ -12,6 +13,20 @@ function nstyle(val,ind)
 
 
 const StyleList = ()=>{
+
+    const [styleData, setstyleData] = useState([]);
+
+    let SData = [];
+
+    getStyles().then(function(response) {
+		console.log(typeof response);
+		console.log(JSON.stringify(response.data));
+		response.data.forEach((element) => {
+			Sdata.push(element);
+        })
+        setstyleData(Sdata);
+        
+    });
     return (
         <>
         <div className="my-5">
@@ -22,7 +37,7 @@ const StyleList = ()=>{
             <div className="row gy-4">
             <div className="col-10 mx-auto">
             <div className="row">
-            {StyleData.map(nstyle)}
+            {styleData.map(nstyle)}
             </div>
             </div>
             </div>
