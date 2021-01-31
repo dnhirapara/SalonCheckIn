@@ -1,3 +1,4 @@
+from rest_framework.status import HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED, HTTP_201_CREATED
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import AnonymousUser
 from rest_framework import serializers
@@ -8,7 +9,7 @@ from Accounts.models import Account, Salon
 from .serializers import ServiceSerializer, TagSerializer
 from rest_framework import permissions
 from Accounts.api import permissions as custom_permissions
-from rest_framework.status import HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED, HTTP_201_CREATED
+from Accounts.api import validation as custom_validation
 
 
 class GetTagsView(viewsets.ModelViewSet):
@@ -80,7 +81,10 @@ class GetServiceView(viewsets.ModelViewSet):
         print(self.request.data)
         # print(self.request.salon)
         user = self.request.user
-        print(user)
+        if not user.is_salon:
+            print("Hello")
+            raise custom_validation.IsNotSalonOwner(
+                "You are not allowed to add service!!!", "error")
         # raise serializers.ValidationError("Anonymous User")
         if type(user) is AnonymousUser:
             raise serializers.ValidationError(

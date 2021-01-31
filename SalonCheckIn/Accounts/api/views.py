@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from . import permissions as custom_permissions
+from . import validation as custom_validation
 from .serializers import (RegistrationSerializer, SalonDetailSerializer,
                           SalonSerializer, SalonUpdateSerializer)
 

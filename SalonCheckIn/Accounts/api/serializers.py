@@ -69,7 +69,8 @@ class SalonSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Salon
-        fields = ['url', 'display_name', 'address', 'description']
+        fields = ['url', 'display_name', 'address',
+                  'description', 'display_image']
         # fields = ['slug', 'display_name']
 
 
