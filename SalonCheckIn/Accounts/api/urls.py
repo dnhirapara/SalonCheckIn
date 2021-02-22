@@ -20,5 +20,5 @@ urlpatterns = format_suffix_patterns([
     path('login', obtain_auth_token, name="login"),
 ])
 
-print(repr(router.urls))
+
 urlpatterns += router.urls

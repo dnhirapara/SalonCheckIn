@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # ISSUE: https://stackoverflow.com/questions/59435187/django-signals-not-working-when-placed-outside-models-py ( signals.py not working so i put below line insted of above line )
     'Accounts.apps.AccountsConfig',
     'SalonServices.apps.SalonservicesConfig',
+    'Appointments.apps.AppointmentsConfig'
 ]
 
 REST_FRAMEWORK = {
@@ -145,6 +146,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media_cdn/'
