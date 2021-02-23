@@ -1,12 +1,11 @@
-import React from 'react'
+import React from "react";
 
-
-const CustomerProfile = () =>{
-    return (
-        <>
-            <h1>Welcome  Customer</h1>
-        </>
-    )
-}
+const CustomerProfile = () => {
+  return (
+    <>
+      <h1>Welcome Customer</h1>
+    </>
+  );
+};
 
 export default CustomerProfile;

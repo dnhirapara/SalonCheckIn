@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 var config = {
-	method: 'get',
-	url: 'http://localhost:8000/api/service/getservices/',
-	headers: {
-		Authorization: 'Token ' + localStorage.getItem('token')
-	}
+  method: "get",
+  url: "http://localhost:8000/api/service/getservices/",
+  headers: {
+    Authorization: "Token " + localStorage.getItem("token"),
+  },
 };
 let Sdata = [];
 // Sdata = [
@@ -34,29 +34,28 @@ console.log(Sdata);
 
 console.log(typeof Sdata);
 
-export const getStyles = ()=>{
-	return axios(config)
-	.catch(function(error) {
-		console.log(error);
-	});
-}
+export const getStyles = () => {
+  return axios(config).catch(function (error) {
+    console.log(error);
+  });
+};
 
 axios(config)
-	.then(function(response) {
-		console.log(typeof response);
-		console.log(JSON.stringify(response.data));
-		response.data.forEach((element) => {
-			Sdata.push(element);
-		});
-		// Sdata.push(response.data);
-		// console.log('inside response');
-		// if (Math.random() % 2 == 0) console.log(Sdata);
-	})
-	.catch(function(error) {
-		console.log(error);
-	});
+  .then(function (response) {
+    console.log(typeof response);
+    console.log(JSON.stringify(response.data));
+    response.data.forEach((element) => {
+      Sdata.push(element);
+    });
+    // Sdata.push(response.data);
+    // console.log('inside response');
+    // if (Math.random() % 2 == 0) console.log(Sdata);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
-console.log('find');
+console.log("find");
 
 console.log(Sdata);
 
