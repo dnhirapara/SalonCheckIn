@@ -1,8 +1,8 @@
 const Sdata = [
 	{
-		title: 'My Salon',
-		appointments: '6',
-		styles: '5'
+		title: 'Sherlock Salon',
+		appointments: '2',
+		styles: '4'
 	},
 	{
 		title: "Darshik's Salon",

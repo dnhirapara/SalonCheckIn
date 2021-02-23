@@ -61,9 +61,9 @@ function Shop(props) {
 				</CardContent>
 			</CardActionArea>
 			<CardActions>
-				<Button size='small' color='secondary'>
+				<a href="/shopprofile" >
 					Proceed
-				</Button>
+				</a>
 			</CardActions>
 		</Card>
 		</div>

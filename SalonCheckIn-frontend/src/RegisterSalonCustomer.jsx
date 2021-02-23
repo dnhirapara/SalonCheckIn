@@ -57,12 +57,13 @@ const RegisterSalonCustomer = (props) => {
             else
             {
                 console.log("hello");
+               
                 window.location = "http://localhost:3000/login";
             }
         }).catch(e=>{
-            console.log("error");
-            console.log(e);
-            props.Show(e.response.data['password'][0]);
+            // console.log("error");
+            // console.log(e);
+            // props.Show(e.response.data['password'][0]);
         });
     }
     return (

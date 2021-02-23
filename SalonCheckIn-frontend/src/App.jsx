@@ -15,6 +15,8 @@ import ShopList from './ShopList';
 import CustomerSalon from './CustomerSalon';
 import AddStyle from './AddStyle';
 import LogOut from './LogOut';
+import MakeAppointment from './MakeAppointment';
+// import CustomerSalon from './CustomerSalon'
 
 
 const App = () =>{
@@ -30,7 +32,8 @@ const App = () =>{
             <Route exact path="/#about" component={Home}/>
             <Route exact path="/addstyle" component={AddStyle}/>
             <Route exact path="/logout" component={LogOut}/>
-            <Route exact path="/shopprofile" component={ShopProfile}/>
+            <Route exact path="/appointment" component={MakeAppointment}/>
+            <Route exact path="/shopprofile" component={CustomerSalon}/>
             <Route exact path="/customerprofile" component={CustomerProfile}/>
             <Route exact path="/salon" component={CustomerSalon}/>
             <Redirect to="/"/>
