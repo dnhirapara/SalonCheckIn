@@ -9,7 +9,6 @@ class Appointment(models.Model):
     service = models.ManyToManyField(Service)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-    # total = models.IntegerField(default=0)
 
     @property
     def get_total(self):

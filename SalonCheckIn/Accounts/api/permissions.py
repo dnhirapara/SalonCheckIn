@@ -3,8 +3,29 @@ from rest_framework import exceptions
 
 
 class SalonUser(permissions.BasePermission):
+    """
+    Assumed: user already authenticated.
+    """
+
+    def has_permission(self, request, view):
+        return request.user.is_salon
+
     def has_object_permission(self, request, view, obj):
+        print("permissions: "+str(request.user.is_salon))
         return request.user.is_salon and request.user == obj.user
+
+
+class SalonUserService(permissions.BasePermission):
+    """
+    Assumed: user already authenticated.
+    """
+
+    def has_permission(self, request, view):
+        return request.user.is_salon
+
+    def has_object_permission(self, request, view, obj):
+        print("permissions: "+str(request.user.is_salon))
+        return request.user.is_salon and request.user == obj.salon.user
 
 
 class SalonUserPermission(permissions.BasePermission):
@@ -27,7 +48,4 @@ class SalonUserPermission(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
-        # elif request.method == 'PATCH' or request.method == 'PUT' or request.method == 'POST' or request.method == 'DELETE':
-        #     if request.user is None:
-        #         return False
         return request.user.is_salon and request.user == obj.user
