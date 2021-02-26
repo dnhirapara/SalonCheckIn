@@ -1,34 +1,15 @@
-const Sdata = [
-	{
-		title: 'Sherlock Salon',
-		appointments: '2',
-		styles: '4'
-	},
-	{
-		title: "Darshik's Salon",
-		appointments: '7',
-		styles: '4'
-	},
-	{
-		title: "Rishil's Salon",
-		appointments: '8',
-		styles: '6'
-	},
-	{
-		title: 'My Salon',
-		appointments: '4',
-		styles: '5'
-	},
-	{
-		title: 'My Salon',
-		appointments: '6',
-		styles: '5'
-	},
-	{
-		title: 'My Salon',
-		appointments: '6',
-		styles: '5'
-	}
-];
+import axios from "./HttpCommon";
+
+const Sdata = [];
+
+// axios
+//   .get("/accounts/getsalons/")
+//   .then((res) => {
+//     console.log(res);
+//     res.data.map((item) => Sdata.push(item));
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 export default Sdata;
