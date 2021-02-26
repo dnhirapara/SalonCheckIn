@@ -60,7 +60,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['email', 'username']
+        fields = ['email', 'username', 'is_salon', 'is_customer']
 
 
 class SalonSerializer(serializers.HyperlinkedModelSerializer):
