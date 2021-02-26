@@ -16,6 +16,7 @@ import CustomerSalon from './CustomerSalon';
 import AddStyle from './AddStyle';
 import LogOut from './LogOut';
 import MakeAppointment from './MakeAppointment';
+import SalonProfile from './SalonProfile';
 // import CustomerSalon from './CustomerSalon'
 
 
@@ -31,6 +32,7 @@ const App = () =>{
             <Route exact path="/shoplist" component={ShopList}/>
             <Route exact path="/#about" component={Home}/>
             <Route exact path="/addstyle" component={AddStyle}/>
+            <Route exact path="/salonprofile" component={SalonProfile}/>
             <Route exact path="/logout" component={LogOut}/>
             <Route exact path="/appointment" component={MakeAppointment}/>
             <Route exact path="/shopprofile" component={CustomerSalon}/>

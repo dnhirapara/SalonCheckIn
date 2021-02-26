@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import axios from 'axios'
+import http from './HttpCommon'
 import Alert from './Alert';
 import { Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import Navbar from './Navbar';
@@ -30,15 +30,25 @@ const Login = () =>{
         bodyFormData.append('username', data.email);
         bodyFormData.append('password', data.pass);
     
-        axios.post('http://127.0.0.1:8000/api/accounts/login',bodyFormData).then(res=>{
+        http.post('/accounts/login/',bodyFormData).then(res=>{
             let result = res.data;
+            console.log(result);
+            console.log(result['user']['is_salon']);
             console.log(result['token']);
             localStorage.setItem('token',result['token']);
-            window.location = "http://localhost:3000/shoplist";
+            if(result['user']['is_salon'])
+            {
+                window.location = "http://localhost:3000/salonprofile";
+            }
+            else if(result['user']['is_customer'])
+            {
+                window.location = "http://localhost:3000/shoplist";
+            }
+
 
         }).catch(e=>{
-            console.log(e.response.data.non_field_errors);
-            alert(e.response.data.non_field_errors)
+            // console.log(e.response.data.non_field_errors);
+            // alert(e.response.data.non_field_errors)
             // <Alert response={e.response.data.non_field_errors}/>
         });
     }

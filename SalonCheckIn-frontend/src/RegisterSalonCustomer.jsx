@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios';
+import http from './HttpCommon'
 import Alert from './Alert';
 import { Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -39,7 +39,7 @@ const RegisterSalonCustomer = (props) => {
         bodyFormData.append('role', data.type);
         console.log( bodyFormData);
        
-        axios.post('http://127.0.0.1:8000/api/accounts/register',bodyFormData).then(res=>{
+        http.post('/accounts/register',bodyFormData).then(res=>{
             let result = res.data;
             console.log(result);
             if(typeof result["username"]=='undefined'||typeof result["email"]=='undefined')

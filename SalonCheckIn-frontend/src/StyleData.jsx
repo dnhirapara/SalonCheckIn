@@ -3,7 +3,7 @@ import axios from 'axios';
 
 var config = {
 	method: 'get',
-	url: 'http://localhost:8000/api/service/getservices/',
+	url: '/service/getservices/',
 	headers: {
 		Authorization: 'Token ' + localStorage.getItem('token')
 	}

@@ -7,10 +7,6 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
-import FastfoodIcon from '@material-ui/icons/Fastfood';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import HotelIcon from '@material-ui/icons/Hotel';
-import RepeatIcon from '@material-ui/icons/Repeat';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -27,6 +23,9 @@ export default function TimeLine() {
 	const classes = useStyles();
 
 	return (
+        <>
+        <div className="container-fluid">
+        <h2 className="text-center">Your Appointments of Today</h2>
 		<Timeline align='alternate'>
 			<TimelineItem>
 				<TimelineOppositeContent>
@@ -39,18 +38,18 @@ export default function TimeLine() {
 					<TimelineConnector />
 				</TimelineSeparator>
 				<TimelineContent>
-					<Paper elevation={3} className={classes.paper}>
+					<Paper elevation={6} className={classes.paper}>
 						<Typography variant='h6' component='h1'>
-							Eat
+							Appointment-1
 						</Typography>
-						<Typography>Because you need strength</Typography>
+						<Typography>Frodo</Typography>
 					</Paper>
 				</TimelineContent>
 			</TimelineItem>
 			<TimelineItem>
 				<TimelineOppositeContent>
 					<Typography variant='body2' color='textSecondary'>
-						10:00 am
+						10:00
 					</Typography>
 				</TimelineOppositeContent>
 				<TimelineSeparator>
@@ -60,13 +59,18 @@ export default function TimeLine() {
 				<TimelineContent>
 					<Paper elevation={3} className={classes.paper}>
 						<Typography variant='h6' component='h1'>
-							Code
+                        Appointment-2
 						</Typography>
-						<Typography>Because it&apos;s awesome!</Typography>
+						<Typography>Sam</Typography>
 					</Paper>
 				</TimelineContent>
 			</TimelineItem>
 			<TimelineItem>
+            <TimelineOppositeContent>
+					<Typography variant='body2' color='textSecondary'>
+						10:30
+					</Typography>
+				</TimelineOppositeContent>
 				<TimelineSeparator>
 					<TimelineDot color='primary' variant='outlined' />
 					<TimelineConnector className={classes.secondaryTail} />
@@ -74,25 +78,32 @@ export default function TimeLine() {
 				<TimelineContent>
 					<Paper elevation={3} className={classes.paper}>
 						<Typography variant='h6' component='h1'>
-							Sleep
+							Appointment-3
 						</Typography>
-						<Typography>Because you need rest</Typography>
+						<Typography>Gandalf</Typography>
 					</Paper>
 				</TimelineContent>
 			</TimelineItem>
 			<TimelineItem>
+            <TimelineOppositeContent>
+					<Typography variant='body2' color='textSecondary'>
+						11:00
+					</Typography>
+			</TimelineOppositeContent>
 				<TimelineSeparator>
 					<TimelineDot color='secondary' />
 				</TimelineSeparator>
 				<TimelineContent>
-					<Paper elevation={3} className={classes.paper}>
+					<Paper elevation={2} className={classes.paper}>
 						<Typography variant='h6' component='h1'>
-							Repeat
+							Appointment-4
 						</Typography>
-						<Typography>Because this is the life you love!</Typography>
+						<Typography>zen</Typography>
 					</Paper>
 				</TimelineContent>
 			</TimelineItem>
 		</Timeline>
+        </div>
+        </>
 	);
 }

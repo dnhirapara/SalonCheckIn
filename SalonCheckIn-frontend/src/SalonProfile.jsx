@@ -10,9 +10,11 @@ const SalonProfile = () => {
         <>
         <Navbar2/>
         <TimeLine/>
-
+        
+        
 
         </>
+        
     );
 };
 
