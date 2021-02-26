@@ -23,5 +23,7 @@ urlpatterns = [
     path('accounts/', include('Accounts.urls')),
     # path('api/accounts/', include('Accounts.api.urls', namespace='api')),
     path('api/accounts/', include('Accounts.api.urls', namespace='accounts-api')),
-    path('api/service/', include('SalonServices.api.urls', namespace='services-api'))
+    path('api/service/', include('SalonServices.api.urls', namespace='services-api')),
+    path('api/appointment/', include('Appointments.api.urls',
+                                     namespace='appointment-api'))
 ]

@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     registration_view,
     GetSalonView,
+    login_view
     # UpdateSalonView,
 )
 from rest_framework.urlpatterns import format_suffix_patterns
@@ -16,9 +17,10 @@ router.register('getsalons', GetSalonView)
 # router.register('update-salon', UpdateSalonView)
 
 urlpatterns = format_suffix_patterns([
-    path('register', registration_view, name="register"),
-    path('login', obtain_auth_token, name="login"),
+    path('register/', registration_view, name="register"),
+    # path('login/', obtain_auth_token, name="login"),
+    path('login/', login_view, name='login')
 ])
 
-print(repr(router.urls))
+
 urlpatterns += router.urls

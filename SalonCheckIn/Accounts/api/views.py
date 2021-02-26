@@ -4,10 +4,14 @@ from rest_framework import generics, mixins, permissions, status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+from rest_framework.status import *
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from . import permissions as custom_permissions
 from .serializers import (RegistrationSerializer, SalonDetailSerializer,
-                          SalonSerializer, SalonUpdateSerializer)
+                          UserSerializer, SalonSerializer, SalonUpdateSerializer)
 
 
 @api_view(['POST', ])
@@ -25,6 +29,26 @@ def registration_view(request):
         else:
             data = serializer.errors
         return Response(data)
+
+
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def login_view(request):
+    user = authenticate(
+        username=request.data['username'],
+        password=request.data['password']
+    )
+    if not user:
+        return Response({'detail': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
+
+    token, created = Token.objects.get_or_create(user=user)
+
+    user_data = UserSerializer(user)
+
+    return Response({
+        'user': user_data.data,
+        'token': token.key,
+    }, status=HTTP_200_OK)
 
 
 class GetSalonView(viewsets.ModelViewSet):

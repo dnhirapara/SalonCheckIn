@@ -15,5 +15,4 @@ urlpatterns = [
     # path('/getservices',)
 ]
 
-print(repr(router.urls))
 urlpatterns += router.urls

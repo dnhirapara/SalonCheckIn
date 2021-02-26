@@ -22,29 +22,6 @@ class GetTagsView(viewsets.ModelViewSet):
     }
 
     def get_permissions(self):
-        """Return the permission classes based on action.
-
-        Look for permission classes in a dict mapping action to
-        permission classes array, ie.:
-
-        class MyViewSet(ViewSetActionPermissionMixin, ViewSet):
-            ...
-            permission_classes = [AllowAny]
-            permission_action_classes = {
-                'list': [IsAuthenticated]
-                'create': [IsAdminUser]
-                'my_action': [MyCustomPermission]
-            }
-
-            @action(...)
-            def my_action:
-                ...
-
-        If there is no action in the dict mapping, then the default
-        permission_classes is returned. If a custom action has its
-        permission_classes defined in the action decorator, then that
-        supercedes the value defined in the dict mapping.
-        """
         print(self.action)
         try:
             for permission in self.permission_action_classes[self.action]:
@@ -62,8 +39,6 @@ class GetTagsView(viewsets.ModelViewSet):
                 )
             else:
                 permission_classes = None
-            # for permission in self.permission_classes:
-            #     print(permission)
             return [
                 permission()
                 for permission in (
@@ -75,12 +50,44 @@ class GetTagsView(viewsets.ModelViewSet):
 class GetServiceView(viewsets.ModelViewSet):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
+    permission_classes = [permissions.IsAuthenticated,
+                          custom_permissions.SalonUserService]
+    permission_action_classes = {
+        "list": [permissions.AllowAny],
+        "retrieve": [permissions.AllowAny],
+    }
+
+    def get_permissions(self):
+        print(self.action)
+        print("in get_permission")
+        try:
+            for permission in self.permission_action_classes[self.action]:
+                print("In for loop")
+                print(permission)
+            return [
+                permission()
+                for permission in self.permission_action_classes[self.action]
+            ]
+        except KeyError:
+            if self.action:
+                action_func = getattr(self, self.action, {})
+                action_func_kwargs = getattr(action_func, "kwargs", {})
+                permission_classes = action_func_kwargs.get(
+                    "permission_classes"
+                )
+            else:
+                permission_classes = None
+            return [
+                permission()
+                for permission in (
+                    permission_classes or self.permission_classes
+                )
+            ]
 
     def perform_create(self, serializer):
         print(self.request.data)
         # print(self.request.salon)
         user = self.request.user
-        print(user)
         # raise serializers.ValidationError("Anonymous User")
         if type(user) is AnonymousUser:
             raise serializers.ValidationError(
