@@ -80,7 +80,7 @@ def no_future_date(date_value):
 class Customer(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     birth_date = models.DateField(
-        verbose_name="Birth Date", validators=[no_future_date])
+        verbose_name="Birth Date", null=True, blank=True)
     address = models.CharField(max_length=512, default="Address")
 
     def __str__(self):

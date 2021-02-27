@@ -18,7 +18,7 @@ class Service(models.Model):
     salon = models.ForeignKey(Salon, on_delete=models.CASCADE)
     name = models.CharField(max_length=64, null=False)
     price = models.PositiveIntegerField()
-    tags = models.OneToOneField(Tag, on_delete=models.CASCADE)
+    tags = models.ForeignKey(Tag, on_delete=models.CASCADE)
     duration = models.DurationField()
 
     def __str__(self):
