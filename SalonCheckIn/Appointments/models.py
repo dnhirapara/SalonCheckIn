@@ -14,13 +14,13 @@ STATUS = [
 class Appointment(models.Model):
     id = models.AutoField(primary_key=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    service = models.OneToOneField(Service, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
     status = models.IntegerField(choices=STATUS, default=1)
     date = models.DateTimeField(auto_now_add=True)
 
     @property
     def get_total(self):
-        total = 0
-        for ser in self.service.all():
-            total += ser.price
+        total = self.service.price
+        # for ser in self.service.objects.all():
+        #     total += ser.price
         return total
