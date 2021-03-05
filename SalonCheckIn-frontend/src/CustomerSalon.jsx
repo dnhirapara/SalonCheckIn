@@ -3,10 +3,11 @@ import Divider from "@material-ui/core/Divider";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Navbar2 from "./Navbar2";
+import Navbar from "./Navbar";
 import axios from "./HttpCommon";
 import { Link, Redirect, useParams } from "react-router-dom";
 import StyleCard from "./StyleCard";
+import Appointment from "./Appointment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +36,7 @@ const CustomerSalon = (props) => {
   const classes = useStyles();
   const { slug } = useParams();
   const [salonStyles, setSalonStyles] = useState([]);
+  const [appointments, setAppointments] = useState([]);
   useEffect(() => {
     axios
       .get("/service/getservices/")
@@ -43,11 +45,26 @@ const CustomerSalon = (props) => {
         setSalonStyles(res.data);
       })
       .catch((err) => console.log(err));
+    axios
+      .get("/appointment/getappointmentscustomer/", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log("Appointment: ");
+        console.log(res.data);
+        setAppointments(res.data);
+        console.log(appointments);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   console.log(slug);
   return (
     <>
-      <Navbar2 />
+      <Navbar />
       <div className="container-fluid fixed">
         <div className="row">
           <div className="col-md-3 col-sm-12" style={mycol}>
@@ -86,12 +103,7 @@ const CustomerSalon = (props) => {
               appointments
             </h3>
             <hr className="w-25 mx-auto pt-2" />
-            <ul class="list-group">
-              <li class="list-group-item">Appointment 1:9:30 to 10:00</li>
-              <li class="list-group-item">Appointment 2:10:00 to 10:30</li>
-              <li class="list-group-item">Appointment 3:11:00 to 11:30</li>
-              <li class="list-group-item">Appointment 4:11:30 to 12:00</li>
-            </ul>
+            <Appointment data={appointments} />
             <a
               href="/appointment"
               className="btn btn-secondary btn-sm active center"

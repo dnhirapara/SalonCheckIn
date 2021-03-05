@@ -60,7 +60,6 @@ function Shop(props) {
           </CardActionArea>
           <CardActions>
             <Link to={`/shopprofile/${props.url}`}>Proceed</Link>
-            <a href="/shopprofile">Proceed</a>
           </CardActions>
         </Card>
       </div>

@@ -11,10 +11,20 @@ STATUS = [
 ]
 
 
+class dummy(models.Model):
+    id = models.AutoField(primary_key=True)
+    service = models.ForeignKey(
+        Service, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer, on_delete=models.CASCADE)
+
+
 class Appointment(models.Model):
     id = models.AutoField(primary_key=True)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    service = models.ForeignKey(
+        Service, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer, on_delete=models.CASCADE)
     status = models.IntegerField(choices=STATUS, default=1)
     date = models.DateTimeField(auto_now_add=True)
 
@@ -24,3 +34,7 @@ class Appointment(models.Model):
         # for ser in self.service.objects.all():
         #     total += ser.price
         return total
+
+    def __str__(self):
+        # return f'%d %s %s' % (self.id, self.customer, self.service)
+        return str(self.id)

@@ -15,6 +15,9 @@ class ManageAppointment(viewsets.ModelViewSet):
     def get_serializer_class(self):
         return AppointmentSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(customer=Customer.objects.get(user=self.request.user))
+
 
 class GetAllAppointmentsSalon(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
@@ -43,8 +46,8 @@ class GetAllAppointmentsCustomer(viewsets.ModelViewSet):
         return self.queryset.filter(customer=customer_user[0])
 
 
-@api_view(['POST', ])
-@permission_classes((IsAuthenticated,))
+@ api_view(['POST', ])
+@ permission_classes((IsAuthenticated,))
 def change_appointment_status(request, id):
     if(request.user.is_salon == False):
         return Response({'error': "You are not salon user"})

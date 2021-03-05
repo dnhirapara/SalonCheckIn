@@ -4,8 +4,8 @@ import {
   Route,
   Switch,
 } from "react-router-dom/cjs/react-router-dom.min";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 import "./index.css";
 import Home from "./Home";
 import Registration from "./Registration";
@@ -21,13 +21,14 @@ import AddStyle from "./AddStyle";
 import LogOut from "./LogOut";
 import MakeAppointment from "./MakeAppointment";
 import SalonProfile from "./SalonProfile";
+import DashboardLayout from "./layouts/DashboardLayout";
 // import CustomerSalon from './CustomerSalon'
 
 const App = () => {
   return (
     <>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={DashboardLayout} />
         <Route exact path="/register" component={Registration} />
         <Route exact path="/register/salon" component={RegisterSalon} />
         <Route exact path="/register/customer" component={RegisterCustomer} />

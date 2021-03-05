@@ -4,7 +4,7 @@ import Alert from "./Alert";
 
 const MakeAppointment = () => {
   const [data, setData] = useState({
-    styleName: "",
+    styleName: "1",
   });
   const [salonStyles, setSalonStyles] = useState([]);
   useEffect(() => {
@@ -25,11 +25,30 @@ const MakeAppointment = () => {
       };
     });
   };
-
+  const handleChange = (event) => setData({ styleName: event.target.value });
   const formSubmit = (e) => {
     e.preventDefault();
+    alert(data.styleName);
+    console.log("Form Submit");
     var bodyFormData = new FormData();
-    bodyFormData.append("styleName", data.styleName);
+    bodyFormData.append("service", data.styleName);
+    axios
+      .post(
+        "/appointment/appointment/",
+        {
+          service: `${data.styleName}`,
+        },
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+    console.log("End Form Submit");
   };
   return (
     <>
@@ -43,9 +62,16 @@ const MakeAppointment = () => {
             <form onSubmit={formSubmit}>
               <div class="form-group">
                 <label for="styleName">Style</label>
-                <select class="form-control" id="styleName">
+                <select
+                  class="form-control"
+                  id="styleName"
+                  value={data.styleName}
+                  onChange={handleChange}
+                >
                   {salonStyles.map((style) => (
-                    <option value={style.name}>{style.name}</option>
+                    <option value={style.id} name={style.name}>
+                      {style.name}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -65,14 +91,14 @@ const MakeAppointment = () => {
                 />
               </div> */}
               <div className="mb-3">
-                <a
+                {/* <a
                   href="/shopprofile"
                   className="btn btn-secondary btn-sm active center"
                   role="button"
                   aria-pressed="true"
-                >
-                  Make an Appointment
-                </a>
+                > */}
+                <input type="submit" value="Make an Appointment" />
+                {/* </a> */}
               </div>
             </form>
           </div>
