@@ -47,6 +47,9 @@ class Account(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    profile_image = models.ImageField(
+        default='profiles/man.png', upload_to='profiles')
+    phone = models.CharField(max_length=10, default='1234567891')
 
     is_customer = models.BooleanField(default=False)
     is_salon = models.BooleanField(default=False)
@@ -111,3 +114,11 @@ class Salon(models.Model):
     #     return reverse('getsalons', args=[str(self.slug)])
     # def get_absolute_url(self, *args, **kwargs):
     #     return reverse('getsalon', kwargs={'slug': self.slug})
+
+
+class Address(models.Model):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    address_line = models.CharField(max_length=150)
+    pincode = models.CharField(max_length=10)
