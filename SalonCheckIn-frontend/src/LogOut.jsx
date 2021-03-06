@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const LogOut = () => {
-	localStorage.removeItem('token');
-	window.location = 'http://localhost:3000/';
+  localStorage.clear();
+  window.location = "http://localhost:3000/";
+  return;
 };
 
 export default LogOut;

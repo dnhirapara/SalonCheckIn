@@ -42,20 +42,41 @@ const Navbar = () => {
                   </a>
                 </li>
                 {localStorage.getItem("token") ? (
-                  ""
-                ) : (
                   <li className="nav-item">
                     <NavLink
                       className="nav-link"
-                      to="/register"
+                      to="/logout"
                       exact
                       activeClassName="active_class"
                     >
-                      Register
+                      Logout
                     </NavLink>
                   </li>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/register"
+                        exact
+                        activeClassName="active_class"
+                      >
+                        Register
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/login"
+                        exact
+                        activeClassName="active_class"
+                      >
+                        Login
+                      </NavLink>
+                    </li>
+                  </>
                 )}
-                {localStorage.getItem("token") ? (
+                {/* {localStorage.getItem("token") ? (
                   <li className="nav-item">
                     <NavLink
                       className="nav-link"
@@ -77,7 +98,10 @@ const Navbar = () => {
                       Login
                     </NavLink>
                   </li>
-                )}
+                )} */}
+                <li className="nav-item">
+                  {localStorage.getItem("userEmail")}
+                </li>
               </ul>
             </div>
           </div>
