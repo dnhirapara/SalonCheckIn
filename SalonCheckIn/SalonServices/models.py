@@ -36,9 +36,42 @@ WEEKDAYS = [
 ]
 
 
+class WorkingHour(models.Model):
+    id = models.AutoField(primary_key=True)
+
+    mon_is_open = models.BooleanField(default=True)
+    mon_form = models.TimeField(null=True, blank=True, default="09:00:00")
+    mon_to = models.TimeField(null=True, blank=True, default="20:00:00")
+
+    tue_is_open = models.BooleanField(default=True)
+    tue_form = models.TimeField(null=True, blank=True, default="09:00:00")
+    tue_to = models.TimeField(null=True, blank=True, default="20:00:00")
+
+    wed_is_open = models.BooleanField(default=True)
+    wed_form = models.TimeField(null=True, blank=True, default="09:00:00")
+    wed_to = models.TimeField(null=True, blank=True, default="20:00:00")
+
+    thu_is_open = models.BooleanField(default=True)
+    thu_form = models.TimeField(null=True, blank=True, default="09:00:00")
+    thu_to = models.TimeField(null=True, blank=True, default="20:00:00")
+
+    fri_is_open = models.BooleanField(default=True)
+    fri_form = models.TimeField(null=True, blank=True, default="09:00:00")
+    fri_to = models.TimeField(null=True, blank=True, default="20:00:00")
+
+    sat_is_open = models.BooleanField(default=True)
+    sat_form = models.TimeField(null=True, blank=True, default="09:00:00")
+    sat_to = models.TimeField(null=True, blank=True, default="20:00:00")
+
+    sun_is_open = models.BooleanField(default=True)
+    sun_form = models.TimeField(null=True, blank=True, default="09:00:00")
+    sun_to = models.TimeField(null=True, blank=True, default="20:00:00")
+
+
 class Setting(models.Model):
     salon = models.ForeignKey(Salon, on_delete=models.CASCADE)
     is_take_appointments = models.BooleanField(default=True)
+    workinghour = models.OneToOneField(WorkingHour, on_delete=models.CASCADE)
 
 
 def time_validator(from_time, to_time):
@@ -46,44 +79,3 @@ def time_validator(from_time, to_time):
         return True
     else:
         return False
-
-
-class WorkingHour(models.Model):
-    # class Meta:
-    #     unique_together = ('weekday'),
-    # salon = models.ForeignKey(Salon, on_delete=models.CASCADE)
-    # weekday = models.IntegerField(choices=WEEKDAYS, unique=True)
-    # is_open = models.BooleanField(default=True)
-    # form = models.TimeField(null=True, blank=True)
-    # to = models.TimeField(null=True, blank=True)
-    id = models.AutoField(primary_key=True)
-    # default_form = models.TimeField(default=time.time())
-    # default_to = models.TimeField(default=time.time())
-
-    mon_is_open = models.BooleanField(default=True)
-    mon_form = models.TimeField(null=True, blank=True)
-    mon_to = models.TimeField(null=True, blank=True)
-
-    tue_is_open = models.BooleanField(default=True)
-    tue_form = models.TimeField(null=True, blank=True)
-    tue_to = models.TimeField(null=True, blank=True)
-
-    wed_is_open = models.BooleanField(default=True)
-    wed_form = models.TimeField(null=True, blank=True)
-    wed_to = models.TimeField(null=True, blank=True)
-
-    thu_is_open = models.BooleanField(default=True)
-    thu_form = models.TimeField(null=True, blank=True)
-    thu_to = models.TimeField(null=True, blank=True)
-
-    fri_is_open = models.BooleanField(default=True)
-    fri_form = models.TimeField(null=True, blank=True)
-    fri_to = models.TimeField(null=True, blank=True)
-
-    sat_is_open = models.BooleanField(default=True)
-    sat_form = models.TimeField(null=True, blank=True)
-    sat_to = models.TimeField(null=True, blank=True)
-
-    sun_is_open = models.BooleanField(default=True)
-    sun_form = models.TimeField(null=True, blank=True)
-    sun_to = models.TimeField(null=True, blank=True)
