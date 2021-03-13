@@ -58,7 +58,7 @@ def change_appointment_status(request, id):
             data['old_status'] = appointment.get_status_display()
             appointment.status = request.data['status']
             appointment.save()
-            data['new_status'] = appointment.get_status_display()
+            data['new_status'] = request.data['status']
             data['success'] = 'Your Appointment Status Changed'
             return Response(data, status=HTTP_200_OK)
         else:

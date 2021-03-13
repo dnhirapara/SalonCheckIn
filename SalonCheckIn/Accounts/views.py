@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import SalonRegistrationForm, RegistrationForm
 from django.contrib.auth import authenticate, login
-
+from utils.send_email import send_email
 from .models import Account
 # Create your views here.
 
@@ -43,5 +43,6 @@ def loginSalon(request):
 
 def index(request):
     context = {}
+    send_email()
     context['title'] = 'index'
     return render(request, 'accounts/index.html', context)

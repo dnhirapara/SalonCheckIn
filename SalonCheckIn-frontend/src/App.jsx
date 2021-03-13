@@ -21,14 +21,13 @@ import AddStyle from "./AddStyle";
 import LogOut from "./LogOut";
 import MakeAppointment from "./MakeAppointment";
 import SalonProfile from "./SalonProfile";
-import DashboardLayout from "./layouts/DashboardLayout";
 // import CustomerSalon from './CustomerSalon'
 
 const App = () => {
   return (
     <>
       <Switch>
-        <Route exact path="/" component={DashboardLayout} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/register" component={Registration} />
         <Route exact path="/register/salon" component={RegisterSalon} />
         <Route exact path="/register/customer" component={RegisterCustomer} />

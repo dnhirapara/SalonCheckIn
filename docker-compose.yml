@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:alpine
+
+  celery:
+    build: .
+    command: celery -A SalonCheckIn worker -l DEBUG
+    volumes:
+      - ./SalonCheckIn/:/home/app/web/
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - redis
+      - web
+
+  celery-beat:
+    build: .
+    command: celery -A SalonCheckIn beat -l DEBUG
+    volumes:
+      - ./SalonCheckIn/:/home/app/web/
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - redis
+      - web
+
+  web:
+    build: .
+    command: gunicorn SalonCheckIn.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./SalonCheckIn/:/home/app/web/
+      - media_volume:/home/app/web/media
+      - static_volume:/home/app/web/static
+    # env_file:
+    #   - ./.env.dev
+    # expose:
+    #   - "8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+
+volumes:
+  media_volume:
+  static_volume:
