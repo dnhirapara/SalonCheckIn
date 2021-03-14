@@ -42,7 +42,6 @@ class AccountManager(BaseUserManager):
         )
         user.is_admin = True
         user.is_staff = True
-        user.address = Address.objects.get(id=1)
         user.is_superuser = True
         print(user)
         user.save(using=self._db)
@@ -68,8 +67,10 @@ class Account(AbstractBaseUser):
     profile_image = models.ImageField(
         default='profiles/man.png', upload_to='profiles')
     phone = models.CharField(max_length=10, default='1234567891')
-    address = models.OneToOneField(
-        Address, on_delete=models.CASCADE, null=True)
+    address = models.CharField(max_length=150)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    pincode = models.CharField(max_length=10)
 
     is_customer = models.BooleanField(default=False)
     is_salon = models.BooleanField(default=False)
