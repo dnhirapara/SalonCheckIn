@@ -105,6 +105,14 @@ WSGI_APPLICATION = 'SalonCheckIn.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'SalonCheckIn',
+        'USER': 'postgres',
+        'PASSWORD': '112358',
+        'HOST': 'localhost',
+        'PORT': '',
+    },
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }

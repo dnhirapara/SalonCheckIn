@@ -14,6 +14,6 @@ class RegistrationForm(UserCreationForm):
 class SalonRegistrationForm(ModelForm):
     class Meta:
         model = Salon
-        fields = ('display_name', 'description', 'address')
+        fields = ('display_name', 'description')
 
 # 'email', 'username', 'password1', 'password2',
