@@ -76,7 +76,7 @@ const Navbar = () => {
                     </li>
                   </>
                 )}
-                {localStorage.getItem("type") ? (
+                {/* {localStorage.getItem("type") ? (
                   localStorage.getItem("type") === "salon" ? (
                     <li className="nav-item">
                       <NavLink className="nav-link" to="#" exact>
@@ -92,7 +92,7 @@ const Navbar = () => {
                   )
                 ) : (
                   ""
-                )}
+                )} */}
               </ul>
             </div>
           </div>

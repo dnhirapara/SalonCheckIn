@@ -12,7 +12,6 @@ import Registration from "./Registration";
 import Login from "./Login";
 import ShopProfile from "./ShopProfile";
 import CustomerProfile from "./CustomerProfile";
-import Footer from "./Footer";
 import RegisterCustomer from "./RegisterCustomer";
 import RegisterSalon from "./RegisterSalon";
 import ShopList from "./ShopList";
@@ -20,6 +19,8 @@ import CustomerSalon from "./CustomerSalon";
 import AddStyle from "./AddStyle";
 import LogOut from "./LogOut";
 import MakeAppointment from "./MakeAppointment";
+// import Footer from "./Footer";
+import Footer from "./components/Footer/Footer";
 import SalonProfile from "./SalonProfile";
 // import CustomerSalon from './CustomerSalon'
 
@@ -35,7 +36,7 @@ const App = () => {
         <Route exact path="/shoplist" component={ShopList} />
         <Route exact path="/#about" component={Home} />
         <Route exact path="/addstyle" component={AddStyle} />
-        <Route exact path="/salonprofile" component={SalonProfile} />
+        <Route exact path="/salonprofile" component={ShopProfile} />
         <Route exact path="/logout" component={LogOut} />
         <Route exact path="/appointment" component={MakeAppointment} />
         <Route exact path="/shopprofile/:slug" component={CustomerSalon} />

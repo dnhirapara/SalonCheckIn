@@ -32,7 +32,6 @@ const styles = {
 };
 
 const CustomerSalon = (props) => {
-  const classes = useStyles();
   const { slug } = useParams();
   const [salonStyles, setSalonStyles] = useState([]);
   useEffect(() => {
@@ -87,10 +86,10 @@ const CustomerSalon = (props) => {
             </h3>
             <hr className="w-25 mx-auto pt-2" />
             <ul class="list-group">
-              <li class="list-group-item">Appointment 1:9:30 to 10:00</li>
+              {/* <li class="list-group-item">Appointment 1:9:30 to 10:00</li>
               <li class="list-group-item">Appointment 2:10:00 to 10:30</li>
               <li class="list-group-item">Appointment 3:11:00 to 11:30</li>
-              <li class="list-group-item">Appointment 4:11:30 to 12:00</li>
+              <li class="list-group-item">Appointment 4:11:30 to 12:00</li> */}
             </ul>
             <a
               href="/appointment"
