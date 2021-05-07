@@ -8,15 +8,17 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework.status import *
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from . import permissions as custom_permissions
+from utils.send_email import send_email_with
 from .serializers import (RegistrationSerializer, SalonDetailSerializer,
                           UserSerializer, SalonSerializer, SalonUpdateSerializer)
 
 
 @api_view(['POST', ])
+@permission_classes([AllowAny, ])
 def registration_view(request):
-
     if request.method == 'POST':
         serializer = RegistrationSerializer(data=request.data)
         data = {}
@@ -26,9 +28,22 @@ def registration_view(request):
             data['response'] = "Successful"
             data['email'] = account.email
             data['username'] = account.username
+            message = "HI {} You Have Successfully Registered in Salon Check In.".format(
+                "Hello User")
+            send_email_with(subject="Welcome To Salon Check In",
+                            message=message, recipient=account.email)
         else:
             data = serializer.errors
         return Response(data)
+
+
+def get_tokens_for_user(user):
+    refresh = RefreshToken.for_user(user)
+
+    return {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+    }
 
 
 @api_view(["POST"])
@@ -40,7 +55,7 @@ def login_view(request):
     )
     if not user:
         return Response({'detail': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
-
+    refresh = RefreshToken.for_user(user)
     token, created = Token.objects.get_or_create(user=user)
 
     user_data = UserSerializer(user)
@@ -48,6 +63,8 @@ def login_view(request):
     return Response({
         'user': user_data.data,
         'token': token.key,
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
     }, status=HTTP_200_OK)
 
 

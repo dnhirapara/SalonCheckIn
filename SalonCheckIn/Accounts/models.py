@@ -60,7 +60,7 @@ class Account(AbstractBaseUser):
         verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_admin = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
@@ -116,14 +116,7 @@ class Salon(models.Model):
         max_length=64, null=False, default="Salon Name")
     display_image = models.ImageField(
         default='salon_display_pics/default.jpg', upload_to='salon_display_pics')
-    description = models.CharField(max_length=1024, default="Descriptin")
-    slug = models.SlugField(default='', editable=False,
-                            max_length=200, null=False, unique=True)
+    description = models.CharField(max_length=1024, default="Description")
 
     def __str__(self):
         return self.user.username
-
-    def save(self, *args, **kwargs):
-        value = self.user.username + " "+self.display_name
-        self.slug = slugify(value, allow_unicode=True)
-        super().save(*args, **kwargs)

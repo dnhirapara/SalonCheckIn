@@ -63,13 +63,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['email', 'username', 'is_salon', 'is_customer']
 
 
-class SalonSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(
-        view_name='accounts-api:salon-detail', lookup_field='slug')
+class SalonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Salon
-        fields = ['url', 'display_name', 'address', 'description']
+        fields = ['display_name', 'description']
         # fields = ['slug', 'display_name']
 
 
@@ -79,10 +77,10 @@ class SalonDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Salon
         fields = ['user', 'display_name',
-                  'description', 'address', 'display_image']
+                  'description', 'display_image']
 
 
 class SalonUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Salon
-        fields = ['display_name', 'description', 'address', 'display_image']
+        fields = ['display_name', 'description', 'display_image']
