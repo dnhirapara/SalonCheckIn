@@ -38,6 +38,7 @@ def login_view(request):
         username=request.data['username'],
         password=request.data['password']
     )
+    print(user)
     if not user:
         return Response({'detail': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
 

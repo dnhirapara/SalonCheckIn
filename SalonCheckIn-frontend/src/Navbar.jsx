@@ -42,20 +42,6 @@ const Navbar = () => {
                   </a>
                 </li>
                 {localStorage.getItem("token") ? (
-                  ""
-                ) : (
-                  <li className="nav-item">
-                    <NavLink
-                      className="nav-link"
-                      to="/register"
-                      exact
-                      activeClassName="active_class"
-                    >
-                      Register
-                    </NavLink>
-                  </li>
-                )}
-                {localStorage.getItem("token") ? (
                   <li className="nav-item">
                     <NavLink
                       className="nav-link"
@@ -67,16 +53,45 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                 ) : (
-                  <li className="nav-item">
-                    <NavLink
-                      className="nav-link"
-                      to="/login"
-                      exact
-                      activeClassName="active_class"
-                    >
-                      Login
-                    </NavLink>
-                  </li>
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/register"
+                        exact
+                        activeClassName="active_class"
+                      >
+                        Register
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/login"
+                        exact
+                        activeClassName="active_class"
+                      >
+                        Login
+                      </NavLink>
+                    </li>
+                  </>
+                )}
+                {localStorage.getItem("type") ? (
+                  localStorage.getItem("type") === "salon" ? (
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="#" exact>
+                        Salon
+                      </NavLink>
+                    </li>
+                  ) : (
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="#" exact>
+                        Customer
+                      </NavLink>
+                    </li>
+                  )
+                ) : (
+                  <p>Hello</p>
                 )}
               </ul>
             </div>
