@@ -91,7 +91,7 @@ const Navbar = () => {
                     </li>
                   )
                 ) : (
-                  <p>Hello</p>
+                  ""
                 )}
               </ul>
             </div>

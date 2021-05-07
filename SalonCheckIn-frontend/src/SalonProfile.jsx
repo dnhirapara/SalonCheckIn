@@ -6,13 +6,13 @@ import {
   Route,
   Switch,
 } from "react-router-dom/cjs/react-router-dom.min";
-import Navbar2 from "./Navbar2";
+import Navbar from "./Navbar";
 import TimeLine from "./TimeLine";
 
 const SalonProfile = () => {
   return (
     <>
-      <Navbar2 />
+      <Navbar />
     </>
   );
 };
